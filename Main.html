@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head></head>
+	<body>
+		<input type="file">
+	</body>
+  <script>
+  //event listner
+const input = document.querySelector("input");
+input.addEventListener('change', () => {
+    uploadFile(input.files[0]);
+});
+
+
+//Main Function
+function uploadFile(file){
+    const fd = new FormData();
+    fd.append('image', file);
+    fetch('https://image-uploader.ruiwenge2.repl.co/upload', {
+        method: 'POST',
+        body: fd
+    }).then(response => response.text()).then(response => {
+    // the response is the URL of the image
+    alert("Image URL: " + response)
+  }).catch(err => alert(err));
+}
+</script>
+</html>
